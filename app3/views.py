@@ -4,6 +4,9 @@ import logging
 import os
 import datetime
 
+from logger.models import Log
+
+
 logger = logging.getLogger(__name__)
 
 # Configure log file path and name
@@ -12,7 +15,6 @@ os.makedirs(log_folder, exist_ok=True)
 
 log_file = datetime.date.today().strftime('%Y-%m-%d') + '.log'
 log_path = os.path.join(log_folder, log_file)
-
 # Create your views here.
 def calculate(request, operation, num1, num2):
     if operation == 'addition':
@@ -32,7 +34,8 @@ def calculate(request, operation, num1, num2):
             return JsonResponse({'error': 'Division by zero not allowed'})
     else:
         return JsonResponse({'error': 'Invalid operation'})
+        
+    log_entry = Log(route=request.path, operation=operation, num1=num1, num2=num2, result=result)
+    log_entry.save()  
 
     return JsonResponse({'result': result})
-	
-	
