@@ -12,6 +12,44 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import os
+import datetime
+import logging
+from logging.handlers import RotatingFileHandler
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Logging Configuration
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+os.makedirs(LOGS_DIR, exist_ok=True)
+LOG_FILE = os.path.join(LOGS_DIR, f'{datetime.date.today()}.log')
+
+# Configure log rotation
+file_handler = RotatingFileHandler(LOG_FILE, maxBytes=1024 * 1024, backupCount=5)
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s [%(module)s:%(lineno)d] %(message)s'))
+
+logger = logging.getLogger('')
+logger.setLevel(logging.INFO)
+logger.addHandler(file_handler)
+
+# Clean up older log files
+def cleanup_logs():
+    logs = os.listdir(LOGS_DIR)
+    for log in logs:
+        log_path = os.path.join(LOGS_DIR, log)
+        if os.path.isfile(log_path):
+            log_date_str = log.split('.')[0]
+            log_date = datetime.datetime.strptime(log_date_str, '%Y-%m-%d').date()
+            today = datetime.date.today()
+            days_diff = (today - log_date).days
+            if days_diff > 7:  # Delete log files older than 7 days
+                os.remove(log_path)
+
+# Call the cleanup_logs function to delete older log files
+cleanup_logs()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +75,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+	'app1',
+	'app2',
+	'app3'
 ]
 
 MIDDLEWARE = [
