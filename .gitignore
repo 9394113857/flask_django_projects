@@ -1,0 +1,36 @@
+# Ignore Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local development settings
+.env
+db.sqlite3
+
+# Ignore Media files (if using Django's default media setup)
+media/
+
+# Ignore Static files (usually collected by Django's collectstatic)
+staticfiles/
+
+# Ignore Virtual environment (if using virtualenv or venv)
+venv/
+env/
+
+# Ignore IDE / Editor specific files
+.vscode/
+.idea/
+
+# Ignore Logs and backups
+*.log
+*.bak
+
+# Ignore local configuration files
+*.local.yml
+*.local.json
+
+# Ignore specific files and directories not to push to Git
+/db.sqlite3
+/logs
+/django-project-env

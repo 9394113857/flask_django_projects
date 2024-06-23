@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+
+    <form action="{% url 'app3:calculate' operation=operation num1=num1 num2=num2 %}" method="post">
+
+        
+        <label for="operation">Operation:</label>
+        <select name="operation" id="operation">
+            <option value="addition">Addition</option>
+            <option value="subtraction">Subtraction</option>
+            <option value="multiplication">Multiplication</option>
+            <option value="division">Division</option>
+        </select>
+        
+        <br>
+        
+        <label for="num1">Number 1:</label>
+        <input type="number" name="num1" id="num1" required>
+        
+        <br>
+        
+        <label for="num2">Number 2:</label>
+        <input type="number" name="num2" id="num2" required>
+        
+        <br>
+        
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+
+    {% if error %}
+        <h2>Error:</h2>
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>

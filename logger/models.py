@@ -1,13 +1,14 @@
+# logger/models.py
+
 from django.db import models
 
-# Create your models here.
 class Log(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
+    # Fields for your Log model
     route = models.CharField(max_length=255)
     operation = models.CharField(max_length=255)
     num1 = models.IntegerField()
     num2 = models.IntegerField()
-    result = models.IntegerField()
+    result = models.FloatField()
 
-    def __str__(self):
-        return f'{self.timestamp} - {self.route} - {self.operation}'
+    class Meta:
+        db_table = "calculator_logs"  # Set the table name to "calculator_logs"
