@@ -1,0 +1,10 @@
+After clone follow these steps:-
+# Crete environment activate it first and then install all packages from requirements.txt file
+# Then make migrations and run it.
+
+py .\manage.py makemigrations 
+
+py .\manage.py migrate
+
+py .\manage.py runserver
+
