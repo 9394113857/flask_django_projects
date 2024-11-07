@@ -6,6 +6,8 @@ py .\manage.py makemigrations
 
 py .\manage.py migrate
 
+# So this is backend rest api code consume from other-side okay.
 py .\manage.py runserver  
+
 
 
