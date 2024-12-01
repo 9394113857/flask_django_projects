@@ -1,4 +1,15 @@
 From Laptop changes as on: 16-11-24 after ---> 8:00 AM 
 From Laptop changes as on: 18-11-24 after ---> 8:00 AM 
 From Laptop changes as on: 26-11-24 after ---> 8:30 AM 
+----------------------------------------------------------------
+From office system changes as on: 1-12-24 after ---> 9:00 AM
+----------------------------------------------------------------
+git commit -m "Just Tested from Laptop all good
+
+1. Table Chnages are pending need to make changes in the code accordingly.
+2. Logs also has to make some changes as the order we see etc.
+3. Trying to enhance as much as more convenient accessible to the site users.
+
+Date: $(Get-Date -Format 'yyyy-MM-dd hh:mm tt')"
+
 
